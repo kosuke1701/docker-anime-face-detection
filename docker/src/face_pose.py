@@ -32,12 +32,9 @@ class FacePose:
         left_pos = np.mean(keypoints[left_indexes], axis=0)[:2]
 
         cos, sin = (left_pos - right_pos) / np.linalg.norm(left_pos - right_pos)
-        rot_mat = np.array([[cos, sin], [-sin, cos]])
-        rot_keypoints = np.dot(keypoints[:,:2] - center, rot_mat.T) + center
 
         face_info["angle"] = float(np.arctan2(sin, cos))
         face_info["center"] = center
-        face_info["rot_keypoints"] = rot_keypoints - center
         face_info["bbox"] = face_info["bbox"][:-1]
         face_info["keypoints"] = face_info["keypoints"][:,:-1]
         return face_info
@@ -86,6 +83,6 @@ class FacePose:
 
 if __name__=="__main__":
     detector = FacePose()
-    infos, img = detector.load_image(open("/data/danbooru_all_512px/all_512px/0001/3559001.png", "rb").read())
+    infos, img = detector.load_image(open("/data/danbooru_all_512px/all_512px/0589/552589.png", "rb").read())
     img = detector.visualize_faces(infos, img)
-    cv2.imwrite("tmp.png", img)
+    cv2.imwrite("/data/tmp.png", img)

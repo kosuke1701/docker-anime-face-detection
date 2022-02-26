@@ -45,8 +45,7 @@ curl -X POST -F file=@/path/to/image http://localhost:32011/detect_faces
         "bbox": [xmin, ymin, xmax, ymax],
         "keypoints": [[x,y]*(28 landmarks)],
         "angle": (face rotation angle),
-        "center": [xcenter,ycenter],
-        "rot_keypoints": [[x,y]*(28 aligned landmarks)]
+        "center": [xcenter,ycenter]
     }
 ]
 ```
