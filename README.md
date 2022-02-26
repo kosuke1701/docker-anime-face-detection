@@ -38,14 +38,22 @@ After API is started, you can access API as follows:
 
 ```
 curl -X POST -F file=@/path/to/image http://localhost:32011/detect_faces
-
-# Return (OpenCV's coordinate system is used):
-[
-    {
-        "bbox": [xmin, ymin, xmax, ymax],
-        "keypoints": [[x,y]*(28 landmarks)],
-        "angle": (face rotation angle),
-        "center": [xcenter,ycenter]
-    }
-]
 ```
+
+Returned json data is a list which contains a dictionary for each detected face with following keys. (OpenCV's coordinate system is used.)
+
+* "bbox"
+  - bounding box of a detected face
+  - [xmin, ymin, xmax, ymax]
+* "keypoints"
+  - 28 landmarks points of a detected face (see https://github.com/hysts/anime-face-detector)
+* "angle"
+  - face rotation angle
+* "valid_score"
+  - If this value is low, it is more likely that detected landmark points are anomalous.
+* "valid_score_threshold"
+  - Default threshold for values of "valid_score".
+* "features"
+  - Normalized and flattened landmark positions for each face components.
+* "origin", "scaleX", "scaleY"
+  - Values used to transform landmark positions when computing values of "features".

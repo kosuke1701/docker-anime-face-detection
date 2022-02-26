@@ -12,7 +12,7 @@ RUN ln -s /usr/bin/python3 /usr/bin/python
 RUN pip3 install torch==1.10.2+cu113 torchvision==0.11.3+cu113 -f https://download.pytorch.org/whl/cu113/torch_stable.html
 
 RUN pip3 install \
-    openmim fastapi uvicorn[standard] python-multipart
+    openmim fastapi uvicorn[standard] python-multipart scikit-learn
 RUN mim install -y mmcv-full \
     && mim install -y mmdet \
     && mim install -y mmpose
